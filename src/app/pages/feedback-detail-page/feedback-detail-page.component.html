@@ -1,0 +1,67 @@
+<div class="py-[80px] px-auto">
+  <div class="container m-auto max-w-[778px]">
+    <div class="flex flex-row align-middle justify-between">
+      <div class="flex flex-row align-middle justify-start gap-3">
+        <img
+          ngSrc="../../../assets/shared/icon-arrow-left.svg"
+          alt="Go Back Icon"
+          width="10"
+          height="10"
+          class="!m-auto w-auto h-auto"
+        />
+        <p
+          class="text-md hover:underline text-slate-500 font-semibold m-auto"
+          (click)="goBack()"
+        >
+          Go Back
+        </p>
+      </div>
+      <button
+        class="bg-[#4661e6] px-5 py-2 rounded-lg text-white font-bold text-md"
+        (click)="editFeedback()"
+      >
+        Edit Feedback
+      </button>
+    </div>
+    <app-feedback-card [feedback]="feedback!"></app-feedback-card>
+
+    <div class="bg-white rounded-lg p-6 my-5">
+      <h3 class="text-lg font-bold text-slate-700">
+        {{ feedbackCommentNums }} Comments
+      </h3>
+      <div>
+        @for (item of feedback?.comments; track item.id) {
+        <app-comment-card [comment]="item"></app-comment-card>
+        @if (item.replies && item.replies.length > 0) {
+        <div class="ml-10">
+          @for (reply of item.replies; track reply.id) {
+          <app-comment-card [comment]="reply"></app-comment-card>
+          }
+        </div>
+        } }
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-6 my-5">
+      <form>
+        <h3 class="text-lg font-bold text-slate-700 my-3">Add Comment</h3>
+        <textarea
+          name="comment"
+          id="txtarea-comment"
+          placeholder="Type your comment here"
+          rows="3"
+          class="w-full bg-slate-100 p-4 rounded-lg text-sm my-3"
+          maxlength="255"
+        ></textarea>
+        <div class="flex flex-row align-middle justify-between my-3">
+          <p class="text-sm text-slate-500">255 characters left</p>
+          <button
+            class="bg-purple-500 px-5 py-2 rounded-lg text-white font-bold text-md"
+          >
+            Post Comment
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

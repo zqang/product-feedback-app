@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background-color: #f7f8fd;
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+body {
+  margin: 0;
+  font-family: "Jost", "Helvetica Neue", sans-serif;
+}

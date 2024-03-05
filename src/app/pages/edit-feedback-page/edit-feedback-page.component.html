@@ -1,0 +1,24 @@
+<div class="py-[80px] px-auto">
+  <div class="container m-auto max-w-[578px]">
+    <div class="flex flex-row align-middle justify-between">
+      <div class="flex flex-row align-middle justify-start gap-3">
+        <img
+          ngSrc="../../../assets/shared/icon-arrow-left.svg"
+          alt="Go Back Icon"
+          width="10"
+          height="10"
+          class="!m-auto w-auto h-auto"
+        />
+        <p
+          class="text-md hover:underline text-slate-500 font-semibold m-auto"
+          (click)="goBack()"
+        >
+          Go Back
+        </p>
+      </div>
+    </div>
+    <div class="mt-20">
+      <app-feedback-form title=""></app-feedback-form>
+    </div>
+  </div>
+</div>
