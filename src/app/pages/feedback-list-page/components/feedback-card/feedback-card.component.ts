@@ -1,8 +1,8 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component, Input, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FeedbackService } from '../../../../core/services/feedback.service';
 import { Feedback, FeedbackModel } from '../../model/feedback.model';
-import { FeedbackService } from '../../services/feedback.service';
 
 @Component({
   selector: 'app-feedback-card',

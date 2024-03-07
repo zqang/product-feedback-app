@@ -14,18 +14,40 @@
         Suggestions
       </h3>
       <div class="flex flex-row gap-1 align-middle justify-center">
-        <p
+        <div
           class="text-sm text-white my-auto flex flex-row align-middle justify-center gap-1"
         >
-          Sort by: <strong>Newest</strong>
-          <img
-            class="m-auto"
-            ngSrc="../../../../../assets/shared/icon-arrow-down.svg"
-            alt="arrow-down"
-            width="10"
-            height="7"
-          />
-        </p>
+          <p>Sort by:</p>
+          <div class="relative">
+            <div
+              class="flex flex-row align-middle justify-center gap-1 cursor-pointer"
+              (click)="openDropdown()"
+            >
+              <strong>{{ selectedSort() }}</strong>
+              <img
+                class="m-auto"
+                ngSrc="../../../../../assets/shared/icon-arrow-down.svg"
+                alt="arrow-down"
+                width="10"
+                height="7"
+              />
+            </div>
+            @if (isDropdownOpen) {
+            <ul
+              class="absolute z-10 bg-white border border-gray-300 rounded my-5 w-52 text-slate-500 text-base left-[-3rem]"
+            >
+              @for (sort of sortBys; track $index) {
+              <li
+                class="hover:bg-gray-100 px-5 py-3 cursor-pointer last:border-b-0 border-b-[1px] border-b-slate-200"
+                (click)="setSort(sort)"
+              >
+                {{ sort }}
+              </li>
+              }
+            </ul>
+            }
+          </div>
+        </div>
       </div>
     </div>
     <button
@@ -43,7 +65,7 @@
     </button>
   </nav>
   <main>
-    @for (item of items.productRequests; track item.id) {
+    @for (item of filteredData(); track item.id) {
     <app-feedback-card [feedback]="item"></app-feedback-card>
     }
   </main>

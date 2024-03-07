@@ -2,9 +2,9 @@ import { NgOptimizedImage } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FeedbackService } from '../../core/services/feedback.service';
 import { FeedbackCardComponent } from '../feedback-list-page/components/feedback-card/feedback-card.component';
 import { Feedback } from '../feedback-list-page/model/feedback.model';
-import { FeedbackService } from '../feedback-list-page/services/feedback.service';
 import { CommentCardComponent } from './components/comment-card/comment-card.component';
 
 @Component({

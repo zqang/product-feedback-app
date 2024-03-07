@@ -9,10 +9,10 @@
   <div
     class="flex flex-row flex-wrap align-middle justify-start gap-3 rounded p-6 m-0 h-44 md:flex-1 md:mr-3 md:w-60 lg:flex-none lg:w-64 lg:mb-3 lg:mr-0 bg-white"
   >
-    @for (item of tag(); track item.id) {
+    @for (item of tag; track item.id) {
 
     <button
-      (click)="setActive(item.id)"
+      (click)="setActive(item)"
       class="py-[6px] px-[16px] bg-[#f7f8fd] rounded-xl text-blue-500 font-semibold h-fit"
       [class]="{ active: item.active }"
     >
@@ -27,7 +27,11 @@
   >
     <div class="flex flex-row justify-between align-middle">
       <h4 class="text-lg text-slate-600 font-bold">Roadmap</h4>
-      <a class="text-sm text-blue-500 underline font-semibold" href="#">View</a>
+      <a
+        class="text-sm text-blue-500 underline font-semibold"
+        [routerLink]="['/roadmap']"
+        >View</a
+      >
     </div>
     <ul class="flex flex-col gap-2 text-base text-slate-500">
       <li class="flex flex-row justify-between align-middle">
