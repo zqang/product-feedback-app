@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import feedbackData from '../../../data.json';
 import {
   Comment,
@@ -123,6 +123,16 @@ export class FeedbackService {
         return tag;
       });
       return tags;
+    });
+  }
+
+  getFeedbacksByStatus(status: string) {
+    return computed(() => {
+      console.log(this.data().productRequests);
+      console.log(status);
+      return this.data().productRequests.filter((value: Feedback) => {
+        return value.status === (status ?? '').toLowerCase();
+      });
     });
   }
 }

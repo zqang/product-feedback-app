@@ -1,0 +1,60 @@
+<div class="flex flex-col p-6 bg-white my-5 rounded-lg gap-4 w-[22rem]">
+  <div class="flex flex-row gap-3">
+    <div class="rounded-full bg-black w-2 h-2 my-auto"></div>
+    <p class="text-base capitalize font-normal text-[#647196]">
+      {{ feedback.status }}
+    </p>
+  </div>
+  <h4 class="text-lg text-[#3a4374] font-bold">{{ feedback.title }}</h4>
+  <p class="text-base font-normal text-[#647196]">
+    {{ feedback.description }}
+  </p>
+  <p
+    class="py-[6px] px-[16px] bg-slate-100 rounded-xl text-blue-500 font-semibold text-sm w-fit capitalize"
+  >
+    {{ feedback.category }}
+  </p>
+  <div class="flex flex-row justify-between">
+    <div
+      class="space-x-2 bg-slate-100 p-2 rounded-lg h-fit w-fit flex flex-row align-middle justify-center cursor-pointer"
+      (click)="upvote(feedback)"
+      [class]="{ active: feedback.upvoted }"
+    >
+      @if (feedback.upvoted) {
+      <img
+        ngSrc="../../../../../assets/shared/icon-arrow-up-active.svg"
+        alt="upvote icon"
+        width="18"
+        height="16"
+        class="w-auto h-auto !m-auto"
+      />
+      }@else{
+      <img
+        ngSrc="../../../../../assets/shared/icon-arrow-up.svg"
+        alt="upvote icon"
+        width="18"
+        height="16"
+        class="w-auto h-auto !m-auto"
+      />
+      }
+      <p
+        [class]="{ active: feedback.upvoted }"
+        class="text-sm text-[#3a4374] font-semibold"
+      >
+        {{ feedback.upvotes }}
+      </p>
+    </div>
+    <div class="flex flex-row gap-2 align-middle justify-center">
+      <img
+        ngSrc="../../../../../assets/shared/icon-comments.svg"
+        alt="upvote icon"
+        width="16"
+        height="16"
+        class="w-auto h-auto m-auto"
+      />
+      <p class="text-md text-[#3a4374] m-auto font-bold">
+        {{ feedback.comments.length }}
+      </p>
+    </div>
+  </div>
+</div>
