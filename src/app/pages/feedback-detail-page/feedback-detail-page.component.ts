@@ -1,11 +1,13 @@
 import { NgOptimizedImage } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FeedbackService } from '../../core/services/feedback.service';
 import { FeedbackCardComponent } from '../feedback-list-page/components/feedback-card/feedback-card.component';
 import { Feedback } from '../feedback-list-page/model/feedback.model';
 import { CommentCardComponent } from './components/comment-card/comment-card.component';
+import { ReplyCardComponent } from './components/reply-card/reply-card.component';
 
 @Component({
   selector: 'app-feedback-detail-page',
@@ -18,6 +20,8 @@ import { CommentCardComponent } from './components/comment-card/comment-card.com
     HttpClientModule,
     NgOptimizedImage,
     CommentCardComponent,
+    FormsModule,
+    ReplyCardComponent,
   ],
 })
 export class FeedbackDetailPageComponent {
@@ -26,6 +30,7 @@ export class FeedbackDetailPageComponent {
   feedbackService = inject(FeedbackService);
   feedback: Feedback | undefined;
   feedbackCommentNums = 0;
+  comment: string = '';
   constructor() {
     this.route.paramMap.subscribe((params) => {
       var selectedId = Number(params.get('id'));
@@ -42,5 +47,10 @@ export class FeedbackDetailPageComponent {
 
   editFeedback() {
     this.router.navigate(['edit'], { relativeTo: this.route });
+  }
+
+  postComment() {
+    this.feedbackService.addComment(this.comment, this.feedback!);
+    this.comment = '';
   }
 }

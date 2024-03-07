@@ -24,5 +24,11 @@ export interface Comment {
   id: number;
   content: string;
   user: User;
-  replies: Comment[];
+  replies: Reply[];
+}
+
+export interface Reply {
+  content: string;
+  replyingTo: string;
+  user: User;
 }

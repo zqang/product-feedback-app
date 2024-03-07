@@ -3,16 +3,20 @@ import { Component, Input, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FeedbackService } from '../../../../core/services/feedback.service';
-import { Comment } from '../../../feedback-list-page/model/feedback.model';
+import {
+  Comment,
+  Reply,
+} from '../../../feedback-list-page/model/feedback.model';
 
 @Component({
-  selector: 'app-comment-card',
+  selector: 'app-reply-card',
   standalone: true,
   imports: [NgOptimizedImage, FormsModule],
-  templateUrl: './comment-card.component.html',
-  styleUrl: './comment-card.component.css',
+  templateUrl: './reply-card.component.html',
+  styleUrl: './reply-card.component.css',
 })
-export class CommentCardComponent {
+export class ReplyCardComponent {
+  @Input() reply: Reply = {} as Reply;
   @Input() comment: Comment = {} as Comment;
   showReplyBox: boolean = false;
   feedbackService = inject(FeedbackService);
@@ -21,12 +25,12 @@ export class CommentCardComponent {
   constructor() {}
 
   postReply() {
-    this.showReplyBox = false;
     this.feedbackService.addReply(
       this.comment,
       this.replyValue,
-      this.comment.user.name
+      this.reply.user.name
     );
+    this.showReplyBox = false;
     this.replyValue = '';
   }
 

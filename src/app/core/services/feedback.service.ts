@@ -5,6 +5,7 @@ import {
   Comment,
   Feedback,
   FeedbackModel,
+  Reply,
 } from '../../pages/feedback-list-page/model/feedback.model';
 import { Tag } from '../../pages/feedback-list-page/model/tag.model';
 
@@ -84,7 +85,7 @@ export class FeedbackService {
     });
   }
 
-  addComment(comment: Comment, feedback: Feedback) {
+  addComment(content: string, feedback: Feedback) {
     this.data.update((feedbackModel: FeedbackModel) => {
       const foundFeedback = feedbackModel.productRequests.find(
         (item) => item.id === feedback.id
@@ -94,20 +95,34 @@ export class FeedbackService {
           foundFeedback.comments.length > 0
             ? foundFeedback.comments[foundFeedback.comments.length - 1].id
             : 0;
-        comment.id = latestId + 1;
+        const comment: Comment = {
+          id: latestId + 1,
+          content: content,
+          user: feedbackModel.currentUser,
+          replies: [],
+        };
         foundFeedback.comments.push(comment);
       }
       return feedbackModel;
     });
   }
 
-  addReplies(comment: Comment) {
+  addReply(comment: Comment, replyContent: string, username: string) {
     this.data.update((feedbackModel: FeedbackModel) => {
       feedbackModel.productRequests.forEach((value: Feedback) => {
         if (value.comments.some((item) => item.id === comment.id)) {
           value.comments.forEach((item) => {
             if (item.id === comment.id) {
-              item.replies.push(comment);
+              const reply: Reply = {
+                content: replyContent,
+                user: feedbackModel.currentUser,
+                replyingTo: username,
+              };
+              if (item.replies && item.replies.length > 0) {
+                item.replies = [...item.replies, reply];
+              } else {
+                item.replies = [reply];
+              }
             }
           });
         }

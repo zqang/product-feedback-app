@@ -34,8 +34,8 @@
         <app-comment-card [comment]="item"></app-comment-card>
         @if (item.replies && item.replies.length > 0) {
         <div class="ml-10">
-          @for (reply of item.replies; track reply.id) {
-          <app-comment-card [comment]="reply"></app-comment-card>
+          @for (reply of item.replies; track reply.replyingTo) {
+          <app-reply-card [reply]="reply" [comment]="item"></app-reply-card>
           }
         </div>
         } }
@@ -52,11 +52,13 @@
           rows="3"
           class="w-full bg-slate-100 p-4 rounded-lg text-sm my-3"
           maxlength="255"
+          [(ngModel)]="comment"
         ></textarea>
         <div class="flex flex-row align-middle justify-between my-3">
           <p class="text-sm text-slate-500">255 characters left</p>
           <button
             class="bg-purple-500 px-5 py-2 rounded-lg text-white font-bold text-md"
+            (click)="postComment()"
           >
             Post Comment
           </button>
