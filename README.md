@@ -13,3 +13,8 @@
 
 - create using Angular v17 with Tailwind Css
 - implement new signal and conditional operations
+
+### Future Improvement
+- add more css effect (hover, animation, style)
+- add responsive design for tablet and mobile
+- refactor code to remove duplicate code and follow DRY design
