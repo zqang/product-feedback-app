@@ -1,5 +1,8 @@
 # Product Feedback App
 
+<img width="1440" alt="image" src="https://github.com/zqang/product-feedback-app/assets/36372430/19e51f47-27ca-43a1-b1cf-07c118baf170">
+
+
 ### Project Descriptions
 
 - show the product feedbacks list at the home page.
